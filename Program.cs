@@ -11,8 +11,10 @@ namespace ConsoleApp2
     {
         static void Main(string[] args)
         {
-            CustomList<int> customList = new CustomList<int>() { 1,3, 5};
-            CustomList<int> customList2 = new CustomList<int>() { 2, 4, 6 };
+            CustomList<int> customList = new CustomList<int>() { 1,3,5};
+            CustomList<int> customList2 = new CustomList<int>() { 2,4,6};
+            customList.Remove(1);
+            customList2.Remove(3);
             CustomList<int> list = new CustomList<int>();
             list = CustomList<int>.Zip(customList, customList2);
             Console.WriteLine(list);

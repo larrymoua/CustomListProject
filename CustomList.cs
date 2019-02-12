@@ -21,11 +21,12 @@ namespace ConsoleApp2
         {
             get
             {
-                return items[index];
+                return items[Count];
             }
             set
             {
-                items[index] = value;
+  
+                items[Count] = value;
             }
             // get and set accessors  
         }
@@ -33,6 +34,7 @@ namespace ConsoleApp2
         public CustomList()
         {
             x = 0;
+            count = 0;
             Compacity = 4;
             items = new T[Compacity];
             tempArr = new T[Compacity];
@@ -58,30 +60,32 @@ namespace ConsoleApp2
         }
         public void Remove(T item)
         {
+
+
             for (int i = 0; i < Count; i++)
             {
                 if (!item.Equals(items[i]))
                 {
 
-
                     tempArr[x] = items[i];
-
-
+                    count++;
                     x++;
 
                 }
+
                 else if (Count < 2)
                 {
-
                     items = tempArr;
                 }
 
+            }                 
+            if (!count.Equals(Count))
+            {
+                Count += -1;
             }
 
-            Count += -1;
-            x = 0;
-
             items = tempArr;
+            x = 0;
 
             return;
         }
@@ -132,14 +136,29 @@ namespace ConsoleApp2
             yield return "No more Teams";
 
         }
-        public static CustomList<T> Zip(CustomList<T> a, CustomList<T> b)
+        public static CustomList<T> Zip(CustomList<T> firstList, CustomList<T> secondList)
         {
             CustomList<T> custom = new CustomList<T>();
+            int highercount = 0;
 
-            for (int i = 0; i < a.Count; i++)
+            if(firstList.count > secondList.count)
             {
-                custom.Add(a.items[i]);
-                custom.Add(b.items[i]);
+                highercount = firstList.Count;
+            }
+            else
+            {
+                highercount = secondList.Count;
+            }
+            for (int i = 0; i < highercount; i++)
+            {
+                if (firstList.count > i)
+                {
+                    custom.Add(firstList.items[i]);
+                }            
+                if(secondList.Count > i)
+                {
+                    custom.Add(secondList.items[i]);
+                }
             }
 
             return custom;
