@@ -110,28 +110,39 @@ namespace ConsoleApp2
         }
         public static CustomList<T> operator -(CustomList<T> a, CustomList<T> b)
         {
-            CustomList<T> custom = new CustomList<T>();
-            for (int i = 0; i < a.Count; i++)
+            foreach(T item in a.items)
             {
-                if (!a.items[i].Equals(b.items[i]))
+                for (int i = 0; i < b.Count; i++)
                 {
-                    custom.Add(a.items[i]);
-                }
-                
+                    if (item.Equals(b.items[i]))
+                    {
+                        a.Remove(item);
+                    }
+                }    
             }
-       
-            return custom;
+            return a;
         }
 
         public IEnumerator GetEnumerator()
         {
             for (int index = 0; index < Count; index++)
             {
-                //yield return westernConference[index];
-                //yield return easternConference[index];
+                yield return""; 
             }
             yield return "No more Teams";
 
+        }
+        public static CustomList<T> Zip(CustomList<T> a, CustomList<T> b)
+        {
+            CustomList<T> custom = new CustomList<T>();
+
+            for (int i = 0; i < a.Count; i++)
+            {
+                custom.Add(a.items[i]);
+                custom.Add(b.items[i]);
+            }
+
+            return custom;
         }
     }
 }
