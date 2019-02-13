@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ConsoleApp2
 {
-    public class CustomList<T> : IEnumerable
+    public class CustomList<T> : IEnumerable, IComparable
     {
 
         public int Count { get; set; }
@@ -69,7 +69,7 @@ namespace ConsoleApp2
         }
         public void Remove(T item)
         {
-
+            tempArr = new T[Compacity];
 
             for (int i = 0; i < Count; i++)
             {
@@ -77,7 +77,6 @@ namespace ConsoleApp2
                 {
 
                     tempArr[x] = items[i];
-                    count++;
                     x++;
 
                 }
@@ -88,10 +87,9 @@ namespace ConsoleApp2
                 }
 
             }                 
-            if (!count.Equals(Count))
-            {
-                Count += -1;
-            }
+ 
+            Count = x;
+            Index = x;
 
             items = tempArr;
             x = 0;
@@ -142,7 +140,7 @@ namespace ConsoleApp2
             {
                 yield return""; 
             }
-            yield return "No more Teams";
+            yield return "";
 
         }
         public static CustomList<T> Zip(CustomList<T> firstList, CustomList<T> secondList)
@@ -150,17 +148,11 @@ namespace ConsoleApp2
             CustomList<T> custom = new CustomList<T>();
             int highercount = 0;
 
-            if(firstList.count > secondList.count)
-            {
-                highercount = firstList.Count;
-            }
-            else
-            {
-                highercount = secondList.Count;
-            }
+            highercount = firstList.Count + secondList.Count;
+
             for (int i = 0; i < highercount; i++)
             {
-                if (firstList.count > i)
+                if (firstList.Count > i)
                 {
                     custom.Add(firstList.items[i]);
                 }            
@@ -172,15 +164,17 @@ namespace ConsoleApp2
 
             return custom;
         }
-        public void Sort(CustomList<T> comparison)
+        public void Sort()
         {
-          
+      
+           T x = items[1];
+            
            
         }
 
-        //public int CompareTo(object obj)
-        //{
-        //    throw new NotImplementedException();
-        //}
+        public int CompareTo(object obj)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
