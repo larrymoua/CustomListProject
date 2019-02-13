@@ -21,12 +21,21 @@ namespace ConsoleApp2
         {
             get
             {
-                return items[Count];
+                return items[index];
+              
             }
             set
             {
-  
-                items[Count] = value;
+                if (index > count)
+                {
+                    throw new ArgumentOutOfRangeException();
+                }
+                else
+                {
+                    items[index] = value;
+                }
+
+                
             }
             // get and set accessors  
         }
@@ -98,7 +107,7 @@ namespace ConsoleApp2
             }
             return putTogether;
         }
-        public static CustomList<T> operator+ (CustomList<T> a, CustomList<T> b)
+        public static CustomList<T> operator +(CustomList<T> a, CustomList<T> b)
         {
             CustomList<T> custom = new CustomList<T>();
             for (int i = 0; i < a.Count; i++)
@@ -163,5 +172,15 @@ namespace ConsoleApp2
 
             return custom;
         }
+        public void Sort(CustomList<T> comparison)
+        {
+          
+           
+        }
+
+        //public int CompareTo(object obj)
+        //{
+        //    throw new NotImplementedException();
+        //}
     }
 }

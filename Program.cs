@@ -11,16 +11,13 @@ namespace ConsoleApp2
     {
         static void Main(string[] args)
         {
-            CustomList<int> customList = new CustomList<int>() { 1,3,5};
-            CustomList<int> customList2 = new CustomList<int>() { 2,4,6};
-            customList.Remove(1);
-            customList2.Remove(3);
-            CustomList<int> list = new CustomList<int>();
-            list = CustomList<int>.Zip(customList, customList2);
-            Console.WriteLine(list);
+
+            CustomList<int> customList = new CustomList<int>() { 2, 3, 5, 8, 9 };
+            CustomList<int> customList2 = new CustomList<int>() { 2, 8, 6, 1, 7 };
+            CustomList<int> result = customList - customList2;
+
+            Console.WriteLine(result);
             Console.ReadLine();
-
-
         }
     }
 }
