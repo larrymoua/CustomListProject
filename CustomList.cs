@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ConsoleApp2
 {
-    public class CustomList<T> : IEnumerable, IComparable
+    public class CustomList<T> : IEnumerable
     {
 
         public int Count { get; set; }
@@ -48,6 +48,7 @@ namespace ConsoleApp2
             items = new T[Compacity];
             tempArr = new T[Compacity];
         }
+   
         public void Add(T item)
         {
 
@@ -164,17 +165,6 @@ namespace ConsoleApp2
 
             return custom;
         }
-        public void Sort()
-        {
-      
-           T x = items[1];
-            
-           
-        }
 
-        public int CompareTo(object obj)
-        {
-            throw new NotImplementedException();
-        }
     }
 }
